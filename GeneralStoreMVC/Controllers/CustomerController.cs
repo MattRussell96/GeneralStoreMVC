@@ -68,7 +68,80 @@ namespace GeneralStoreMVC.Controllers
             };
             return View(model);
         }
-        
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var customer = _ctx.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var model = new CustomerEditModel
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Edit(int id, CustomerEditModel model)
+        {
+            var customer = _ctx.Customers.Find(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            customer.Name = model.Name;
+            customer.Email = model.Email;
+
+            if (_ctx.SaveChanges() == 1)
+            {
+                return Redirect("/Customer");
+            }
+
+            ViewData["ErrorMsg"] = "Unable to save the database. Please try again later.";
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var customer = _ctx.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var model = new CustomerDetailModel
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Delete(int? id, CustomerDetailModel model)
+        {
+            var customer = _ctx.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            _ctx.Customers.Remove(customer);
+            _ctx.SaveChanges();
+            return Redirect("/Customer");
+        }
 
     }
 }

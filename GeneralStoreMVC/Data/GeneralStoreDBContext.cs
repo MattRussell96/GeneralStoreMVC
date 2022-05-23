@@ -81,5 +81,7 @@ namespace GeneralStoreMVC.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<GeneralStoreMVC.Models.Customer.CustomerDetailModel> CustomerDetailModel { get; set; }
+
+        public DbSet<GeneralStoreMVC.Models.Customer.CustomerEditModel> CustomerEditModel { get; set; }
     }
 }

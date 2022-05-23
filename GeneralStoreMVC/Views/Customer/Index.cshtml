@@ -25,6 +25,11 @@
             <td>@customer.Name</td>
             <td>@customer.Email</td>
             <td> @* Leaving This Blank To Add Action Links for Later *@ </td>
+        <td>
+             <a asp-action="Edit" asp-route-id="@customer.Id">Edit</a> |
+             <a asp-action="Details" asp-route-id="@customer.Id">Details</a> |
+             <a asp-action="Delete" asp-route-id="@customer.Id">Delete</a>
+        </td>
         </tr>
     }
     </tbody>

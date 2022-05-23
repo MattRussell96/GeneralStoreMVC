@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using GeneralStoreMVC.Models.Customer;
 
 #nullable disable
 
@@ -78,5 +79,7 @@ namespace GeneralStoreMVC.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<GeneralStoreMVC.Models.Customer.CustomerDetailModel> CustomerDetailModel { get; set; }
     }
 }

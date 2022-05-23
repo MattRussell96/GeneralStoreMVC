@@ -47,6 +47,28 @@ namespace GeneralStoreMVC.Controllers
             TempData["ErrorMsg"] = "Unable to save to the database. Please try agin later.";
             return View(model);
         }
+
+        // GET: customer/deatil/{id}
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var customer = _ctx.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var model = new CustomerDetailModel
+            {
+                Id = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+            };
+            return View(model);
+        }
         
+
     }
 }

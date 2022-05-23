@@ -26,6 +26,7 @@ namespace GeneralStoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddServerSideBlazor();
             services.AddDbContext<GeneralStoreDBContext>(
                 options => options.UseSqlServer(Configuration["ConnectionStrings:GSLocal"]));
         }
@@ -55,6 +56,7 @@ namespace GeneralStoreMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapBlazorHub();
             });
         }
     }

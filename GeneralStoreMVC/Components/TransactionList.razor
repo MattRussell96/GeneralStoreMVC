@@ -1,0 +1,46 @@
+﻿<h3>Transaction List</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                Date Of Transaction
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Transactions)
+        {
+            <tr>
+                <td>
+                    @item.Product.Name
+                </td>
+                <td>
+                    @item.Quantity
+                </td>
+                <td>
+                    @item.Customer.Name
+                </td>
+                <td>
+                    @item.DateOfTransaction
+                </td>
+                <td>
+                    <a href="Transaction/Edit/@item.Id">Edit</a> |
+                    <a href="Transaction/Details/@item.Id">Details</a> |
+                    <ah href="Transaction/Delete/@item.Id">Delete</ah>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter] public IEnumerable<Transaction> Transactions { get; set; }
+}

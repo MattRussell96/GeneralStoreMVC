@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<GeneralStoreMVC.Data.Transaction>
 
+<component type="typeof(TransactionList)" render-mode="ServerPrerendered" param-transactions="Model" />
+
 @{
     ViewData["Title"] = "Index";
 }
